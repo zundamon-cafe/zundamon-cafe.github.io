@@ -1,0 +1,147 @@
+@charset "UTF-8";
+@namespace url(http://www.w3.org/1999/xhtml);
+
+body {
+	--width: 51rem;
+	--staff-width: 22rem;
+	--staff-gap: 1rem;
+	--max-staffs-per-line: 4;
+
+	color: black;
+	background: whitesmoke;
+	margin-top: 0;
+	margin-right: 0;
+	margin-left: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	line-height: 1.6;
+
+	font-family: "M PLUS Rounded 1c", sans-serif;
+}
+
+p,
+body > footer dl {
+	/* Rounded M+ のシャギー防止 */
+	transform: rotate(0.03deg);
+}
+
+body > section > h2 {
+	font-size: clamp(1.2rem, calc(100vw * 0.055), 2.5rem);
+}
+
+#events,
+#past-events,
+#contact,
+body > footer {
+	max-width: min(100vw - 4rem, var(--width));
+}
+
+#contact,
+body > footer {
+	width: 100%;
+	max-width: min(100vw - 4rem, var(--width));
+}
+
+/*====================================
+	ヘッダー
+*/
+body > header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	padding-bottom: 2em;
+	aspect-ratio: 1920 / 1080;
+	width: 100%;
+	max-height: min(100vh, 50rem);
+	overflow: hidden;
+}
+
+body > header::before {
+	content: "";
+	display: block;
+	position: absolute;
+	--blur: 2px;
+	top: calc(-1 * var(--blur));
+	right: calc(-1 * var(--blur));
+	bottom: var(--blur);
+	left: calc(-1 * var(--blur));
+	background: #7FCF36 url("/images/header.png") no-repeat center / contain;
+	filter: blur(var(--blur)) brightness(0.8);
+	z-index: -1;
+}
+
+h1 {
+	font-size: min(calc(100vw * 0.095), 5em);
+	text-shadow: 0 0 0.2em black;
+	margin: 0;
+	color: whitesmoke;
+	text-align: center;
+}
+
+/*====================================
+	about
+*/
+#about {
+	--padding: clamp(0.5rem, 100vw * 0.04, 3rem);
+	--background-padding: 2rem;
+	--about-body-width: min(100% * 0.7, calc(var(--width) / 2));
+
+	margin-top: 2rem;
+	width: min(calc(100% - 1rem), var(--width));
+	background: #C1DF87 url("/images/about.png") right var(--background-padding) top var(--background-padding)
+		/ min(calc(100% - var(--about-body-width) - var(--padding) - var(--background-padding)), 30%) auto no-repeat;
+	border-radius: 3rem;
+	padding: var(--padding);
+	box-sizing: border-box;
+	min-height: calc(min(100vw, var(--width)) * (2 / 3));
+}
+
+@media (max-width: 36.5rem) {
+	#about {
+		background-position: right var(--background-padding) bottom var(--background-padding);
+	}
+}
+
+#about p {
+	width: var(--about-body-width);
+}
+
+/*====================================
+	店員紹介
+*/
+#staffs {
+	max-width: calc(var(--max-staffs-per-line) * var(--staff-width)
+		+ (var(--max-staffs-per-line) - 1) * var(--staff-width));
+	margin-bottom: 3rem;
+}
+
+#staffs h2 {
+	padding-left: 1rem;
+}
+
+/*====================================
+	お知らせ
+*/
+#contact h2 {
+	display: none;
+}
+.twitter-timeline {
+	display: contents !important;
+}
+
+.twitter-timeline iframe {
+	width: 100% !important;
+}
+
+/*====================================
+	フッター
+*/
+body > footer h2 {
+	margin-bottom: unset;
+}
+
+body > footer dl {
+	margin-top: unset;
+}
